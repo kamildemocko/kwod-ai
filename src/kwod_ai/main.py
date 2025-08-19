@@ -4,10 +4,14 @@ from dotenv import load_dotenv
 
 from kwod import get_data
 from ai import get_ai_input
+from discord import send_message
 
 
 def main():
+    print("getting korean word of the day...")
     word_of_the_day = get_data()
+
+    print("getting AI sentences...")
     ai_response = get_ai_input(word_of_the_day.word)
 
     output = textwrap.dedent(f"""
@@ -20,7 +24,10 @@ def main():
     {ai_response}
     """)
 
-    print(output)
+    print("sending discord message...")
+    send_message(output)
+
+    print("all done")
 
 if __name__ == "__main__":
     load_dotenv()
