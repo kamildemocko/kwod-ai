@@ -1,4 +1,5 @@
 from string import Template
+from dataclasses import dataclass
 
 import httpx
 from selectolax.parser import HTMLParser
@@ -8,7 +9,15 @@ import arrow
 URL = Template("https://wotd.transparent.com/rss/$month-$day-$year-korean-widget.xml?t=$timestamp")
 
 
-def main():
+@dataclass
+class WordOfTheDay:
+    word: str
+    translation: str
+    phrase: str
+    phrase_translation: str
+
+
+def get_data() -> WordOfTheDay:
     with httpx.Client() as client:
         now = arrow.now()
 
@@ -36,8 +45,9 @@ def main():
         phrase = phrase_css.text()
         phrase_translation = phrase_translation_css.text()
 
-        print(word, word_translation, phrase, phrase_translation)
-
-
-if __name__ == "__main__":
-    main()
+        return WordOfTheDay(
+            word=word,
+            translation=word_translation,
+            phrase=phrase,
+            phrase_translation=phrase_translation
+        )
