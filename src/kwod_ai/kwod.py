@@ -18,6 +18,16 @@ class WordOfTheDay:
 
 
 def get_data() -> WordOfTheDay:
+    """
+    Fetches today's Korean word, its translation, a phrase, and its translation.
+
+    Returns:
+        WordOfTheDay: A dataclass containing the Korean word, its translation, a phrase, and its translation.
+
+    Raises:
+        AssertionError: If the HTML structure of the response is unexpected.
+        httpx.HTTPError: If the request to the API fails.
+    """
     with httpx.Client() as client:
         now = arrow.now()
 

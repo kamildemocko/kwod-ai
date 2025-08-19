@@ -4,6 +4,18 @@ import openai
 
 
 def get_ai_input(word: str) -> str:
+    """
+    Generate AI input for a given Korean word.
+
+    Args:
+        word (str): The Korean word to generate input for.
+
+    Returns:
+        str: The generated AI input.
+
+    Raises:
+        AssertionError: If the OPEN_AI_KEY environment variable is not set.
+    """
     key = openai.api_key = os.getenv("OPEN_AI_KEY")
     assert key is not None, "OPEN_AI_KEY environment variable is not set"
 

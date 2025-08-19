@@ -4,6 +4,16 @@ import httpx
 
 
 def send_message(msg: str) -> None:
+    """
+    Send a message to Discord using a webhook.
+
+    Args:
+        msg (str): The message to send.
+
+    Raises:
+        AssertionError: If the DISCORD_WEBHOOK environment variable is not set.
+        httpx.HTTPError: If the request to the API fails.
+    """
     payload = {"content": msg}
     headers = {"Content-Type": "application/json"}
 
