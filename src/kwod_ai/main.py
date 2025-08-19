@@ -17,11 +17,10 @@ def main():
     output = textwrap.dedent(f"""
     Word of the Day: {word_of_the_day.word} - {word_of_the_day.translation}
 
-    Example sentence:
-    {word_of_the_day.phrase} - {word_of_the_day.phrase_translation}
+    {textwrap.indent(ai_response, '    ')[3:]}
 
-    Example Sentences by AI:
-    {ai_response}
+    Original example sentence:
+    {word_of_the_day.phrase} - {word_of_the_day.phrase_translation}
     """)
 
     print("sending discord message...")
